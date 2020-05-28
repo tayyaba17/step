@@ -15,14 +15,16 @@
 /**
  * Adds a random greeting to the page.
  */
-function addRandomGreeting() {
-  const greetings =
-      ['My favorite vegetable is spinach! (or is that a leaf?)', 'I can speak English, Urdu & Japanese', 'I would love to go to the moon', 'Moosetracks is my favorite ice cream!'];
+function addRandomFact() {
+  const facts =
+      ['My favorite vegetable is spinach (or is that a leaf?)', 'I can speak English, Urdu & Japanese', 'I would love to go to the moon', 'Moosetracks is my favorite ice cream!',
+      "My favorite color is purple", "I'm the youngest child", "I usually visit Toronto twice a year", "I love doing hair masks", "My favorite band is BTS", "My name with no vowels is Tb", 
+      "I HATE olives", "If I were a punctuation I would definitely be a exclamation mark", "I once fell on my chin and hand to get it glued back together", "My favorite season is fall"];
 
   // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+  const fact = facts[Math.floor(Math.random() * facts.length)];
 
   // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+  const factContainer = document.getElementById('fact-container');
+  factContainer.innerText = fact;
 }
