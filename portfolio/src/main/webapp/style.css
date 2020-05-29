@@ -23,7 +23,7 @@ body {
 }
 
 /* Hide the images by default */
-.mySlides {
+.slides-fade {
   display: none;
   width: 550px;
   margin-left: auto;
