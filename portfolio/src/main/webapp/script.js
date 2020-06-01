@@ -20,7 +20,7 @@ function addRandomFact() {
       ['My favorite vegetable is spinach (or is that a leaf?)', 'I can speak English, Urdu & Japanese', 'I would love to go to the moon', 
       'Moosetracks is my favorite ice cream!', "My favorite color is purple", "I'm the youngest child", "I usually visit Toronto twice a year", 
       "I love doing hair masks", "My favorite band is BTS", "My name with no vowels is Tb", "I HATE olives", 
-      "If I were a punctuation I would definitely be a exclamation mark", "I once fell on my chin and hand to get it glued back together", 
+      "If I were a punctuation I would definitely be a exclamation mark", "I once fell on my chin and had to get it glued back together", 
       "My favorite season is fall"];
 
   // Pick a random greeting.
@@ -43,13 +43,16 @@ function currentSlide(n) {
   showSlides(slideIndex = n);
 }
 
+// Add it to the page.
+  const slideContainer = document.getElementById('slides-fade');
+
 function showSlides(n) {
   var i;
-  var slides = document.getElementsByClassName("slides-fade");
+  var slides = document.getElementsByClassName('slides-fade');
   if (n > slides.length) {slideIndex = 0}
   if (n < 0) {slideIndex = slides.length}
   for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
+      slides[i].style.display = 'none';
   }
-  slides[slideIndex-1].style.display = "block";
+  slides[slideIndex-1].style.display = 'block';
 }
