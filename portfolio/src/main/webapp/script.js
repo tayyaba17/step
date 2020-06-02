@@ -32,7 +32,7 @@ function addRandomFact() {
 }
 
 function sayHello() {
-    fetch("/data").then(response => response.text()).then((text) => {
+    fetch("/data").then(response => response.json()).then((text) => {
     document.getElementById('hello-container').innerText = text;
   });
 }
