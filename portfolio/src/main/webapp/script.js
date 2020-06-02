@@ -31,6 +31,12 @@ function addRandomFact() {
   factContainer.innerText = fact;
 }
 
+function sayHello() {
+    fetch("/data").then(response => response.text()).then((text) => {
+    document.getElementById('hello-container').innerText = text;
+  });
+}
+
 var slideIndex = 0;
 
 // Next/previous controls
