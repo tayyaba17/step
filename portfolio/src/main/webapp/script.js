@@ -31,7 +31,7 @@ function addRandomFact() {
   factContainer.innerText = fact;
 }
 
-function sayHello() {
+function getComments() {
     fetch("/data").then(response => response.json()).then((text) => {
         const greetings = document.getElementById('hello-container');
         greetings.innerHTML = '';
