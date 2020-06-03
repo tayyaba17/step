@@ -32,8 +32,13 @@ function addRandomFact() {
 }
 
 function sayHello() {
-    fetch("/data").then(response => response.text()).then((text) => {
-    document.getElementById('hello-container').innerText = text;
+    fetch("/data").then(response => response.json()).then((text) => {
+        const greetings = document.getElementById('hello-container');
+        greetings.innerHTML = '';
+        var i;
+        for (i = 0; i < text.length; i++) {
+          greetings.innerHTML += text[i];
+         }
   });
 }
 
