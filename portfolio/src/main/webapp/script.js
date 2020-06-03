@@ -35,9 +35,10 @@ function sayHello() {
     fetch("/data").then(response => response.json()).then((text) => {
         const greetings = document.getElementById('hello-container');
         greetings.innerHTML = '';
-        greetings.innerHTML += text[0];
-        greetings.innerHTML += text[1];
-        greetings.innerHTML += text[2];
+        var i;
+        for (i = 0; i < text.length; i++) {
+          greetings.innerHTML += text[i];
+         }
   });
 }
 
