@@ -72,11 +72,9 @@ div {
       <img src="images/MU9.JPG" alt="A look inspired by BTS's music video, Euphoria"
        width="650" height="650">
     </div>
-  </body>
-</html>
-
-<!-- Slideshow container -->
-<div class="slideshow-container">
+  
+  <!-- Slideshow container -->
+  <div class="slideshow-container">
   <h1>Guinea Pig Gallery</h1>
   <p>Press the arrows to open and view the Guinea Pig Gallery!</p>
   <!-- images with number and caption text -->
@@ -113,7 +111,7 @@ div {
 
   <div class="slides-fade">
     <img src="images/GP6.jpg" alt="My guinea pig, Koko, running towards the camera" 
-width="550" 
+    width="550" 
     height="550">
     <div class="text">My guinea pig, Koko, running towards the camera</div>
   </div>
@@ -121,5 +119,18 @@ width="550"
   <!-- Next and previous buttons -->
   <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
   <a class="next" onclick="plusSlides(1)">&#10095;</a>
-</div>
 
+  </div>
+  <body onload="getComments()">
+    <h1>Comments</h1>
+    <form action="/data" method="POST">
+      <p>Share your thoughts:</p>
+      <textarea name="text-input">Looks awesome!</textarea>
+      <br/><br/>
+
+      <input type="submit" />
+    </form>
+  </body>
+  
+  </body>
+</html>
