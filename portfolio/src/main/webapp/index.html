@@ -23,9 +23,6 @@ div {
   <body>
     <div id="content">
       <h1>Tayyaba's Portfolio</h1>
-      <p>Say Hello:</p>
-      <body onload="sayHello()">
-      <div id="hello-container"></div>
       <p>Hi! My name is Tayyaba and welcome to my page! 
           I am a undergraduate student at Cornell University, Class of 2022. 
             I am majoring in Computer Science and Asian Studies. A lot of people ask my why 
@@ -121,16 +118,19 @@ div {
   <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
   </div>
-  <body onload="getComments()">
-    <h1>Comments</h1>
-    <form action="/data" method="POST">
-      <p>Share your thoughts:</p>
-      <textarea name="text-input">Looks awesome!</textarea>
-      <br/><br/>
 
+  <div id="comment-container">
+  <h1>Comments</h1>
+  <p>Share your thoughts:</p>
+  <body onload="getComments()">
+    <form action="/data" method="POST">
+      <textarea name="comment" rows="3" cols="35">Your Name: Your Comment</textarea>
+      <br/><br/>
       <input type="submit" />
     </form>
-  </body>
+    <hr/>
+    <ul id="comment-list"></ul>
+    </div>
   
   </body>
 </html>
