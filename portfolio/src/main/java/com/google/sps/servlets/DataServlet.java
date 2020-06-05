@@ -17,10 +17,14 @@ package com.google.sps.servlets;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.gson.Gson;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.io.IOException;
+import java.util.List;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,8 +36,19 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    ArrayList<String> greetings = new ArrayList<String>();
-    String json = convertToJsonUsingGson(greetings);
+    Query query = new Query("comment");
+    
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery results = datastore.prepare(query);
+
+    ArrayList messages = new ArrayList<>();
+    for (Entity entity : results.asIterable()){
+        long id = entity.getKey().getId();
+        String msg = (String) entity.getProperty("comment");
+        messages.add(msg);
+    }
+    String json = convertToJsonUsingGson(messages);
+
     response.setContentType("text/html;");
     response.getWriter().println(json);
   }
@@ -41,22 +56,13 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the input from the form.
-    String text = request.getParameter("text-input");
-    long timestamp = System.currentTimeMillis();
+    String text = request.getParameter("comment");
 
-    // Break the text into individual words.
-    String[] words = text.split("\\W+");
-
-    // Respond with the result.
-    response.setContentType("text/html;");
-    response.getWriter().println(Arrays.toString(words));
-
-    Entity taskEntity = new Entity("Task");
-    taskEntity.setProperty("text-input", text);
-    taskEntity.setProperty("timestamp", timestamp);
+    Entity msgEntity = new Entity("comment");
+    msgEntity.setProperty("comment", text);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(taskEntity);
+    datastore.put(msgEntity);
 
     response.sendRedirect("/index.html");
   }
