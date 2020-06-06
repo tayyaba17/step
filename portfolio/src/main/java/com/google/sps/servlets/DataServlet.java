@@ -17,6 +17,9 @@ package com.google.sps.servlets;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.FetchOptions;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
@@ -34,17 +37,22 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
+  String comNum =  "5";
+
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    Query query = new Query("comment");
-    
+
+   int comLimit = Integer.parseInt(comNum);
+
+    Query query = new Query("COMMENT").addSort("timestamp", SortDirection.DESCENDING);
+
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
 
     ArrayList messages = new ArrayList<>();
-    for (Entity entity : results.asIterable()){
+    for (Entity entity : results.asList(FetchOptions.Builder.withLimit(comLimit))){
         long id = entity.getKey().getId();
-        String msg = (String) entity.getProperty("comment");
+        String msg = (String) entity.getProperty("COMMENT");
         messages.add(msg);
     }
     String json = convertToJsonUsingGson(messages);
@@ -56,13 +64,18 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the input from the form.
-    String text = request.getParameter("comment");
+    String commentText = request.getParameter("COMMENT");
+    long timestamp = System.currentTimeMillis();
 
-    Entity msgEntity = new Entity("comment");
-    msgEntity.setProperty("comment", text);
+    Entity msgEntity = new Entity("COMMENT");
+
+    msgEntity.setProperty("COMMENT", commentText);
+    msgEntity.setProperty("timestamp", timestamp);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(msgEntity);
+
+    comNum = request.getParameter("number-comments");
 
     response.sendRedirect("/index.html");
   }
@@ -85,4 +98,3 @@ public class DataServlet extends HttpServlet {
     return json;
   }
 }
-
