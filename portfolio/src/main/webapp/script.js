@@ -37,6 +37,18 @@ function getComments() {
         comments.innerHTML = '';
         var i;
         for (i = 0; i < text.length; i++) {
+            if (text[i] != "null") {
+          comments.innerHTML += text[i] + "<br>";}
+         }
+  });
+}
+
+function deleteComments() {
+    fetch("/delete-data").then(response => response.json()).then((text) => {
+        const comments = document.getElementById('comment-list');
+        comments.innerHTML = '';
+        var i;
+        for (i = 0; i < text.length; i++) {
           comments.innerHTML += text[i] + "<br>";
          }
   });
