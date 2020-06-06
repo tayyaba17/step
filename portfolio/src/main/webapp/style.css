@@ -8,7 +8,20 @@
   margin-top: 20px;
 }
 
+#comment-num-container{
+  margin-left: auto;
+  margin-right: auto;
+  width: 650px;
+}
+
 #comment-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 650px;
+  length: 750px
+}
+
+#delete-container {
   margin-left: auto;
   margin-right: auto;
   width: 650px;
