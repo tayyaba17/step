@@ -36,29 +36,27 @@ import javax.servlet.http.HttpServletResponse;
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-
-  String comNum =  "5";
-
+  private String comNum =  "5";
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
    int comLimit = Integer.parseInt(comNum);
 
-    Query query = new Query("COMMENT").addSort("timestamp", SortDirection.DESCENDING);
+   Query query = new Query("COMMENT").addSort("timestamp", SortDirection.DESCENDING);
 
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    PreparedQuery results = datastore.prepare(query);
+   DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+   PreparedQuery results = datastore.prepare(query);
 
-    ArrayList messages = new ArrayList<>();
-    for (Entity entity : results.asList(FetchOptions.Builder.withLimit(comLimit))){
+   ArrayList messages = new ArrayList<>();
+   for (Entity entity : results.asList(FetchOptions.Builder.withLimit(comLimit))){
         long id = entity.getKey().getId();
         String msg = (String) entity.getProperty("COMMENT");
         messages.add(msg);
-    }
-    String json = convertToJsonUsingGson(messages);
+   }
+   String json = convertToJsonUsingGson(messages);
 
-    response.setContentType("text/html;");
-    response.getWriter().println(json);
+   response.setContentType("text/html;");
+   response.getWriter().println(json);
   }
 
   @Override
