@@ -119,18 +119,42 @@ div {
 
   </div>
 
+  <div id="comment-num-container">
+  <p>Pick number of comments to view</p>
+  <form action="/data" method="POST">
+  <label for="cars">Number of comments:</label>
+  <select name="number-comments" id="number-comments">
+    <option value="1">1</option>
+    <option value="5">5</option>
+    <option value="10">10</option>
+    <option value="15">15</option>
+  </select>
+  <input type="submit" value="Submit">
+  </form>
+  </div>
+  
   <div id="comment-container">
   <h1>Comments</h1>
   <p>Share your thoughts:</p>
   <body onload="getComments()">
     <form action="/data" method="POST">
-      <textarea name="comment" rows="3" cols="35">Your Name: Your Comment</textarea>
+      <textarea name="COMMENT" rows="3" cols="35">Your Name: Your Comment</textarea>
       <br/><br/>
-      <input type="submit" />
+      <input type="submit"/>
     </form>
-    <hr/>
-    <ul id="comment-list"></ul>
-    </div>
-  
+  <hr>
+  <ul id="comment-list"></ul>
+  </div>
+
+  <div id="delete-container">
+  <h1>Delete Comments</h1>
+  <p>Press button to delete comments.</p>
+    <form action="/delete-data" method="POST">
+      <br/><br/>
+      <input type="submit" value="Delete"onclick="deleteComments()"/>
+    </form>
+  <ul id="comment-list"></ul>
+  </div>
+
   </body>
 </html>

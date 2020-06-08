@@ -32,13 +32,24 @@ function addRandomFact() {
 }
 
 function getComments() {
-    fetch("/data").then(response => response.json()).then((text) => {
-        const comments = document.getElementById('comment-list');
-        comments.innerHTML = '';
-        var i;
-        for (i = 0; i < text.length; i++) {
-          comments.innerHTML += text[i] + "<br>";
-         }
+  fetch("/data").then(response => response.json()).then((text) => {
+    const comments = document.getElementById('comment-list');
+    comments.innerHTML = '';
+    var i;
+    for (i = 0; i < text.length; i++) {
+      if (text[i] != null) {comments.innerHTML += text[i] + "<br>";}
+    }
+  });
+}
+
+function deleteComments() {
+  fetch("/delete-data").then(response => response.json()).then((text) => {
+    const comments = document.getElementById('comment-list');
+    comments.innerHTML = '';
+    var i;
+    for (i = 0; i < text.length; i++) {
+      comments.innerHTML += text[i] + "<br>";
+    }
   });
 }
 
@@ -55,7 +66,7 @@ function currentSlide(n) {
 }
 
 // Add it to the page.
-  const slideContainer = document.getElementById('slides-fade');
+const slideContainer = document.getElementById('slides-fade');
 
 function showSlides(n) {
   var i;

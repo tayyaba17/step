@@ -34,65 +34,38 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
-@WebServlet("/data")
-public class DataServlet extends HttpServlet {
-  private String comNum =  "5";
-  @Override
+@WebServlet("/num-comments")
+public class NumCommentsServlet extends HttpServlet {
+    private String comNum =  "5";
+@Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-   int comLimit = Integer.parseInt(comNum);
+    comNum = request.getParameter("number-comments");
+      
+    int comLimit = Integer.parseInt(comNum);
 
-   Query query = new Query("COMMENT").addSort("timestamp", SortDirection.DESCENDING);
+    Query query = new Query("COMMENT").addSort("timestamp", SortDirection.DESCENDING);
 
-   DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-   PreparedQuery results = datastore.prepare(query);
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery results = datastore.prepare(query);
 
-   ArrayList messages = new ArrayList<>();
-   for (Entity entity : results.asList(FetchOptions.Builder.withLimit(comLimit))){
+    ArrayList messages = new ArrayList<>();
+    for (Entity entity : results.asList(FetchOptions.Builder.withLimit(comLimit))){
         long id = entity.getKey().getId();
         String msg = (String) entity.getProperty("COMMENT");
         messages.add(msg);
-   }
-   String json = convertToJsonUsingGson(messages);
-
-   response.setContentType("text/html;");
-   response.getWriter().println(json);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // Get the input from the form.
-    String commentText = request.getParameter("COMMENT");
-    long timestamp = System.currentTimeMillis();
-
-    Entity msgEntity = new Entity("COMMENT");
-
-    msgEntity.setProperty("COMMENT", commentText);
-    msgEntity.setProperty("timestamp", timestamp);
-
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(msgEntity);
-
-    comNum = request.getParameter("number-comments");
-
-    response.sendRedirect("/index.html");
-  }
-
-  /**
-   * @return the request parameter, or the default value if the parameter
-   *         was not specified by the client
-   */
-  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
-    String value = request.getParameter(name);
-    if (value == null) {
-      return defaultValue;
     }
-    return value;
+    String json = convertToJsonUsingGson(messages);
+
+    response.setContentType("text/html;");
+    response.getWriter().println(json);
+
+    response.sendRedirect("/data?number-comments=" + comNum);
   }
 
-  private String convertToJsonUsingGson(ArrayList array) {
+   private String convertToJsonUsingGson(ArrayList array) {
     Gson gson = new Gson();
     String json = gson.toJson(array);
     return json;
   }
-}
+ }
