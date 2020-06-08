@@ -16,10 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/delete-data")
 public class DeleteServlet extends HttpServlet {
-
+  public static final String COMMENT = "COMMENT";
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    Query query = new Query("COMMENT");
+    Query query = new Query(COMMENT);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
