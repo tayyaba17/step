@@ -17,13 +17,9 @@ div {
   <head>
     <meta charset="UTF-8">  
     <title>Tayyaba's Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDixUncDhGPY7ZZCzPr7kt-IqE6ER5F_I"></script>
     <script src="script.js"></script>
-    <script src="https://www.gstatic.com/charts/loader.js"></script>
-    <script>
-    google.charts.load('current', {packages: ['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
-    </script>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <div id="content">
@@ -124,12 +120,10 @@ div {
 
   </div>
 
-  <div id="chart-container">
-  <h1>Hello Google Charts</h1>
-  </div>
- 
-
-
+  <body onload="createMap();">
+  <h1>Hello Google Maps</h1>
+  <div id="map"></div>
+  <p>This page shows a Google Map!</p>
 
   <div id="comment-num-container">
   <p>Pick number of comments to view</p>
