@@ -8,6 +8,12 @@
   margin-top: 20px;
 }
 
+#map{
+  margin-left: auto;
+  margin-right: auto;
+  width: 650px;
+}
+
 #comment-num-container{
   margin-left: auto;
   margin-right: auto;
