@@ -15,10 +15,15 @@ div {
 
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8">  
     <title>Tayyaba's Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+    google.charts.load('current', {packages: ['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    </script>
   </head>
   <body>
     <div id="content">
@@ -118,6 +123,13 @@ div {
   <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
   </div>
+
+  <div id="chart-container">
+  <h1>Hello Google Charts</h1>
+  </div>
+ 
+
+
 
   <div id="comment-num-container">
   <p>Pick number of comments to view</p>
