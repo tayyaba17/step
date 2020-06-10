@@ -15,10 +15,11 @@ div {
 
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8">  
     <title>Tayyaba's Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDixUncDhGPY7ZZCzPr7kt-IqE6ER5F_I"></script>
     <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <div id="content">
@@ -118,6 +119,11 @@ div {
   <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
   </div>
+
+  <body onload="createMap();">
+  <h1>Hello Google Maps</h1>
+  <div id="map"></div>
+  <p>This page shows a Google Map!</p>
 
   <div id="comment-num-container">
   <p>Pick number of comments to view</p>
