@@ -82,5 +82,71 @@ function showSlides(n) {
 function createMap() {
   const map = new google.maps.Map(
       document.getElementById('map'),
-      {center: {lat: 37.422, lng: -122.084}, zoom: 16});
+      {center: {lat: 41.998599, lng: -87.686634}, zoom: 5});
+
+  const restaurant1 = new google.maps.Marker({
+      position: {lat: 41.998599, lng: -87.686634},
+      map: map,
+      title: 'When I want Halwa Poori.'
+  });
+
+  const restaurant2 = new google.maps.Marker({
+      position: {lat: 42.010480, lng: -88.078836},
+      map: map,
+      title: 'When I want a spicy chicken sandwich.'
+  });
+
+ const restaurant3 = new google.maps.Marker({
+      position: {lat: 42.440098, lng: -76.499338},
+      map: map,
+      title: 'My favorite taco place.'
+  });
+
+ const restaurant4 = new google.maps.Marker({
+      position: {lat: 42.439693, lng: -76.506755},
+      map: map,
+      title: 'Some really good spicy ramen.'
+  });
+
+ const restaurant5 = new google.maps.Marker({
+      position: {lat: 42.448526, lng: -76.489515},
+      map: map,
+      title: 'The best dining hall at Cornell.'
+  });
+
+ const restaurant6 = new google.maps.Marker({
+      position: {lat: 41.886542, lng: -87.624846},
+      map: map,
+      title: 'A place I visit whenever I am in downtown Chicago.'
+  });
+
+ const restaurant7 = new google.maps.Marker({
+      position: {lat: 42.049014, lng: -88.100470},
+      map: map,
+      title: 'Their cactus and egg sopa combo is super yummy.'
+  });
+
+ const restaurant8 = new google.maps.Marker({
+      position: {lat: 41.998045, lng: -87.691950},
+      map: map,
+      title: 'A really good Nihari spot.'
+  });
+
+ const restaurant9 = new google.maps.Marker({
+      position: {lat: 24.866154, lng: 67.078181},
+      map: map,
+      title: 'A delicious place to eat in Pakistan.'
+  });
+
+ const restaurant10 = new google.maps.Marker({
+      position: {lat: 43.645964, lng: -88.033743},
+      map: map,
+      title: 'If you want an cookie ice-cream sandwich.'
+  });
+
+ const restaurant11 = new google.maps.Marker({
+      position: {lat: 43.646045, lng: -79.409491},
+      map: map,
+      title: 'Yummy ube ice-cream served in a black cone.'
+  });
 }

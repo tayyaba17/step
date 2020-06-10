@@ -1,51 +1,37 @@
 <!DOCTYPE html>
-
-<html>
-<head>
-<style>
-div {
-  background-color: whitesmoke;
-  width: 300px;
-  padding: 50px;
-  margin: 20px;
-}
-</style>
-</head>
-</html>
-
 <html>
   <head>
-    <meta charset="UTF-8">  
+    <meta charset="UTF-8">
     <title>Tayyaba's Portfolio</title>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDixUncDhGPY7ZZCzPr7kt-IqE6ER5F_I"></script>
     <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
   </head>
-  <body>
+  <body onload="createMap(); getComments();">
     <div id="content">
       <h1>Tayyaba's Portfolio</h1>
       <p>Hi! My name is Tayyaba and welcome to my page! 
-          I am a undergraduate student at Cornell University, Class of 2022. 
-            I am majoring in Computer Science and Asian Studies. A lot of people ask my why 
-            I chose those two majors since they appear to be very different. Truthfully, 
-            I enjoy STEM and Humanities a lot, and believe that they are equally as important. 
-            In Asian Studies, I mostly focus on Japan and South Asia, and am currently 
-            studying Japanese. I was supposed to study abroad in Japan, Fall 2020, 
-            but due to recent events, that has been postponed to Spring 2021, fingers crossed! 
-            If you'd like to learn more about some of my projects or my previous experiences, 
-            please check out my 
-            <a href="https://www.linkedin.com/in/tayyabaali/">LinkedIn</a> and 
-            <a href="https://github.com/tayyaba17/">GitHub</a>.
+      I am an undergraduate student at Cornell University, Class of 2022. 
+      I am majoring in Computer Science and Asian Studies. A lot of people ask my why 
+      I chose those two majors since they appear to be very different. Truthfully, 
+      I enjoy STEM and Humanities a lot, and believe that they are equally as important. 
+      In Asian Studies, I mostly focus on Japan and South Asia, and am currently 
+      studying Japanese. I was supposed to study abroad in Japan, Fall 2020, 
+      but due to recent events, that has been postponed to Spring 2021, fingers crossed! 
+      If you'd like to learn more about some of my projects or my previous experiences, 
+      please check out my 
+      <a href="https://www.linkedin.com/in/tayyabaali/">LinkedIn</a> and 
+      <a href="https://github.com/tayyaba17/">GitHub</a>.
       </p>
 
       <p>A little more about me is that I really enjoy expressing my creative side in many ways, 
-            from graphic deisgn to trying out new makeup looks! I am also a big animal lover,
-             growing up I always wanted a cat, but after my parents' constant refusal, 
-             I ended up getting guinea pigs. I have three guinea pigs right now 
-             (at one point I had five), and they are the sweetest.
-             I used to read a lot when I was younger so that is something that I am trying 
-             to get back into, I'm always looking for reccomendations so if you have any, 
-             please any let me know!</p>
+      from graphic deisgn to trying out new makeup looks! I am also a big animal lover,
+      growing up I always wanted a cat, but after my parents' constant refusal, 
+      I ended up getting guinea pigs. I have three guinea pigs right now 
+      (at one point I had five), and they are the sweetest.
+      I used to read a lot when I was younger so that is something that I am trying 
+      to get back into, I'm always looking for reccomendations so if you have any, 
+      please any let me know!</p>
 
       <p>Press the button to learn a random fact about me:</p>
       <button onclick="addRandomFact()">Facts</button>
@@ -58,7 +44,7 @@ div {
       <img src="images/MU1.jpg" alt="A image of my latest look, where I made my eyelids look 
       like butterfly wings." width="650" height="650">
       <img src="images/MU2.jpg" alt="Another image of my butterfly wings eyeshadow look."
-       width="650" height="650">
+      width="650" height="650">
       <img src="images/MU3.jpg" alt="A makeup look inspired by the Nintendo Switch." 
       width="650" height="650">
       <img src="images/MU4.jpg" alt="A look I did for my birthday." width="650" height="650">
@@ -68,99 +54,100 @@ div {
       width="650" height="650">
       <img src="images/MU8.jpg" alt="A fashion/blogger inspired look" width="650" height="650">
       <img src="images/MU9.JPG" alt="A look inspired by BTS's music video, Euphoria"
-       width="650" height="650">
+      width="650" height="650">
+
+      <h1>My Favorite Places to Eat</h1>
+      <div id="map"> </div>
+      <p>Check out the markers to see my favorite restaurants! <br>
+      There's 11 places... try to find them all!</p>
+
+      <!-- Slideshow container -->
+      <div class="slideshow-container">
+        <h1>Guinea Pig Gallery</h1>
+        <p>Press the arrows to open and view the Guinea Pig Gallery!</p>
+        <!-- images with number and caption text -->
+    
+        <div class="slides-fade">
+          <img src="images/GP2.jpg" alt="My guinea pig, Butter, smiling at the camera" width="550" 
+          height="550">
+          <div class="text">My guinea pig, Butter, smiling at the camera</div>
+        </div>
+
+        <div class="slides-fade">
+          <img src="images/GP1.jpg" alt="My guinea pig, Butter, sniffing the camera" width="550" 
+          height="550">
+          <div class="text">My guinea pig, Butter, sniffing the camera</div>
+        </div>
+
+        <div class="slides-fade">
+          <img src="images/GP3.jpg" alt="My guinea pig, Koko, posing for the camera" width="550" 
+          height="550">
+          <div class="text">My guinea pig, Koko, posing for the camera</div>
+        </div>
+
+        <div class="slides-fade">
+          <img src="images/GP4.jpg" alt="My guinea pig, Taffy, posing for the camera" width="550" 
+          height="550">
+          <div class="text">My guinea pig, Taffy, posing for the camera</div>
+        </div>
+
+        <div class="slides-fade">
+          <img src="images/GP5.jpg" alt="My guinea pig, Butter, running towards the camera" 
+          width="550" 
+          height="550">
+          <div class="text">My guinea pig, Butter, running towards the camera</div>
+        </div>
+
+        <div class="slides-fade">
+          <img src="images/GP6.jpg" alt="My guinea pig, Koko, running towards the camera" 
+          width="550" 
+          height="550">
+          <div class="text">My guinea pig, Koko, running towards the camera</div>
+        </div>
+
+        <!-- Next and previous buttons -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      </div>
+
+      <div id="comment-num-container">
+        <h1>Comments</h1>
+        <p>Pick number of comments to view</p>
+        <form action="/data" method="POST">
+          <label for="cars">Number of comments:</label>
+          <select name="number-comments" id="number-comments">
+          <option value="1">1</option>
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+          </select>
+          <input type="submit" value="Submit">
+        </form>
+      </div>
+
+      <div id="comment-container">
+        <p>Share your thoughts:</p>
+        <form action="/data" method="POST">
+          <textarea name="COMMENT" rows="3" cols="35">Your Name: Your Comment</textarea>
+          <br/><br/>
+          <input type="submit"/>
+        </form>
+        <hr>
+        <ul id="comment-list"></ul>
+      </div>
+
+      <div id="delete-container">
+        <h1>Delete Comments</h1>
+        <p>Press button to delete comments.</p>
+        <form action="/delete-data" method="POST">
+          <br/><br/>
+          <input type="submit" value="Delete"onclick="deleteComments()"/>
+        </form>
+        <ul id="comment-list"></ul>
+      </div>
+
     </div>
-  
-  <!-- Slideshow container -->
-  <div class="slideshow-container">
-  <h1>Guinea Pig Gallery</h1>
-  <p>Press the arrows to open and view the Guinea Pig Gallery!</p>
-  <!-- images with number and caption text -->
-  <div class="slides-fade">
-    <img src="images/GP2.jpg" alt="My guinea pig, Butter, smiling at the camera" width="550" 
-    height="550">
-    <div class="text">My guinea pig, Butter, smiling at the camera</div>
-  </div>
-
-  <div class="slides-fade">
-    <img src="images/GP1.jpg" alt="My guinea pig, Butter, sniffing the camera" width="550" 
-    height="550">
-    <div class="text">My guinea pig, Butter, sniffing the camera</div>
-  </div>
-
-  <div class="slides-fade">
-    <img src="images/GP3.jpg" alt="My guinea pig, Koko, posing for the camera" width="550" 
-    height="550">
-    <div class="text">My guinea pig, Koko, posing for the camera</div>
-  </div>
-
-  <div class="slides-fade">
-    <img src="images/GP4.jpg" alt="My guinea pig, Taffy, posing for the camera" width="550" 
-    height="550">
-    <div class="text">My guinea pig, Taffy, posing for the camera</div>
-  </div>
-
-  <div class="slides-fade">
-    <img src="images/GP5.jpg" alt="My guinea pig, Butter, running towards the camera" 
-    width="550" 
-    height="550">
-    <div class="text">My guinea pig, Butter, running towards the camera</div>
-  </div>
-
-  <div class="slides-fade">
-    <img src="images/GP6.jpg" alt="My guinea pig, Koko, running towards the camera" 
-    width="550" 
-    height="550">
-    <div class="text">My guinea pig, Koko, running towards the camera</div>
-  </div>
-
-  <!-- Next and previous buttons -->
-  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-  <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-  </div>
-
-  <body onload="createMap();">
-  <h1>Hello Google Maps</h1>
-  <div id="map"></div>
-  <p>This page shows a Google Map!</p>
-
-  <div id="comment-num-container">
-  <p>Pick number of comments to view</p>
-  <form action="/data" method="POST">
-  <label for="cars">Number of comments:</label>
-  <select name="number-comments" id="number-comments">
-    <option value="1">1</option>
-    <option value="5">5</option>
-    <option value="10">10</option>
-    <option value="15">15</option>
-  </select>
-  <input type="submit" value="Submit">
-  </form>
-  </div>
-  
-  <div id="comment-container">
-  <h1>Comments</h1>
-  <p>Share your thoughts:</p>
-  <body onload="getComments()">
-    <form action="/data" method="POST">
-      <textarea name="COMMENT" rows="3" cols="35">Your Name: Your Comment</textarea>
-      <br/><br/>
-      <input type="submit"/>
-    </form>
-  <hr>
-  <ul id="comment-list"></ul>
-  </div>
-
-  <div id="delete-container">
-  <h1>Delete Comments</h1>
-  <p>Press button to delete comments.</p>
-    <form action="/delete-data" method="POST">
-      <br/><br/>
-      <input type="submit" value="Delete"onclick="deleteComments()"/>
-    </form>
-  <ul id="comment-list"></ul>
-  </div>
 
   </body>
+
 </html>
