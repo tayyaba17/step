@@ -2,16 +2,27 @@
   margin-left: auto;
   margin-right: auto;
   width: 650px;
+  background-color: whitesmoke;
+  padding: 50px;
 }
 
 #fact-container {
   margin-top: 20px;
+  background-color: whitesmoke;
 }
 
-#map{
+#map {
+  height: 500px;
+  width: 500px;
   margin-left: auto;
   margin-right: auto;
-  width: 650px;
+  margin-top: 20px;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 #comment-num-container{
@@ -24,7 +35,7 @@
   margin-left: auto;
   margin-right: auto;
   width: 650px;
-  length: 750px
+  height: 200px;
 }
 
 #delete-container {
@@ -44,7 +55,6 @@ body {
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  
 }
 
 /* Hide the images by default */
