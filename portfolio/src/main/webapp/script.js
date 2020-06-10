@@ -149,5 +149,4 @@ function createMap() {
       map: map,
       title: 'Yummy ube ice-cream served in a black cone.'
   });
-
 }
