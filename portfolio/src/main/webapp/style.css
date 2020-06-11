@@ -11,6 +11,13 @@
   background-color: whitesmoke;
 }
 
+#chart-container {
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  background-color: whitesmoke;
+}
+
 #map {
   height: 650px;
   width: 650px;
