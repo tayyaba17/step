@@ -12,6 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
 /**
  * Adds a random greeting to the page.
  */
@@ -149,4 +152,28 @@ function createMap() {
       map: map,
       title: 'Yummy ube ice-cream served in a black cone.'
   });
+}
+
+/** Creates a chart and adds it to the page. */
+function drawChart() {
+  const data = new google.visualization.DataTable();
+  data.addColumn('string', 'Person');
+  data.addColumn('number', 'Percentage');
+        data.addRows([
+          ['Men', 72],
+          ['Women', 28],
+        ]);
+
+  const options = {
+    'title': 'The Distribution of Women & Men in the Science and Engineering Workforce',
+    'fontSize': 15,
+    'backgroundColor': 'whitesmoke',
+    'width':550,
+    'height':550,
+    'colors': ['#ffbdf1', '#FBDB87']
+  };
+
+  const chart = new google.visualization.PieChart(
+      document.getElementById('chart-container'));
+  chart.draw(data, options);
 }
