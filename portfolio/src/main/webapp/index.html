@@ -7,13 +7,20 @@
     <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Alata' rel='stylesheet'>
+    <style>
+    body {
+    font-family: 'Alata';
+    }
+    </style>
   </head>
   <body onload="createMap(); getComments();">
     <div id="content">
+
       <h1>Tayyaba's Portfolio</h1>
       <p>Hi! My name is Tayyaba and welcome to my page! 
       I am an undergraduate student at Cornell University, Class of 2022. 
-      I am majoring in Computer Science and Asian Studies. A lot of people ask my why 
+      I am majoring in Computer Science and Asian Studies. A lot of people ask me why 
       I chose those two majors since they appear to be very different. Truthfully, 
       I enjoy STEM and Humanities a lot, and believe that they are equally as important. 
       In Asian Studies, I mostly focus on Japan and South Asia, and am currently 
@@ -26,20 +33,118 @@
       </p>
 
       <p>A little more about me is that I really enjoy expressing my creative side in many ways, 
-      from graphic deisgn to trying out new makeup looks! I am also a big animal lover,
-      growing up I always wanted a cat, but after my parents' constant refusal, 
-      I ended up getting guinea pigs. I have three guinea pigs right now 
-      (at one point I had five), and they are the sweetest.
-      I used to read a lot when I was younger so that is something that I am trying 
-      to get back into, I'm always looking for reccomendations so if you have any, 
-      please any let me know!</p>
+      from graphic design to trying out new makeup looks! I also really embrace the idea of being 
+      a life-long learner and enjoy expanding my knowledge on topics related to social justice, 
+      technology and food. One of my recent goals is to get back into reading, if you have any 
+      suggestions that you think I’ll enjoy, please let me know! The focus of my website will 
+      be different topics that I am passionate about, check out the modules to learn more 
+      about them. Enjoy!</p>
 
       <p>Press the button to learn a random fact about me:</p>
       <button onclick="addRandomFact()">Facts</button>
       <div id="fact-container"></div>
 
       <h1>Women in Tech Graphs</h1>
+      <p>There has always been an uneven distribution between men and women when it comes to 
+      the workforce, but especially in the field of technology. I created the pie chart 
+      below with 
+      <a href="https://ngcproject.org/sites/default/files/ngcp_the_state_of_girls_and_women_in_stem_2018a.pdf">data</a> 
+      from the National Girls Collaborative Project (NGCP). As you can see, there is a stark difference in the 
+      percentages, and this chart does not show the distribution of Womxn of Color (WOC).</p>
+
       <div id="chart-container"></div>
+
+      <p>Based on data collected in 2015 from The National Center for Education Statistics, 
+      these are the percentages of WOC who earned STEM degrees in higher education institutions.<br>
+      Black women: 2.9% <br> Latinx Womxn: 3.8% <br> Asian womxn: 5%</p>
+
+      <p>Since womxn and especially WOC have historically lacked proper representation in 
+      STEM education and the STEM workforce, many WOC feel unwelcome in their environments 
+      and are underpaid. This leads many of them to leave their jobs. 
+      The goal of institutions should not be just to get more WOC in their programs, 
+      but should also be committed to providing them the support needed and stay committed 
+      to changing the work environment to recognize womxn’s contributions.</p>
+
+      <p>Having fair representation of WOC in STEM is a necessity, without them it is 
+      impossible to make products that will satisfy the needs of all users, and deprivation 
+      of their contributions will further solidify the biases that are already baked 
+      into existing products.</p>
+
+      <p> SOURCES: 
+      <a href="https://ngcproject.org/sites/default/files/ngcp_the_state_of_girls_and_women_in_stem_2018a.pdf">NGCP Statistics</a>, 
+      <a href="https://online.maryville.edu/blog/women-of-color-in-stem/">Maryville University Blog</a> </p>
+
+      <!-- Slideshow container -->
+      <div class="slideshow-container">
+        <h2>Let's Break Down STEM</h2>
+        <p>Press the arrows to open and view the the slideshow.</p>
+        <!-- images with number and caption text -->
+    
+        <div class="slides-fade">
+          <img src="images/STEM1.jpg" alt="Lets break it down by field." width="550" 
+          height="550">
+          <div class="text">Slides from <a href="https://instagram.com/changingwomxn">
+          @changingwomxn</a> on instagram.</div>
+        </div>
+
+        <div class="slides-fade">
+          <img src="images/STEM2.jpg" alt="We often believe STEM is 'objective' or ideally outside
+          of human bias. This is far from the truth." 
+          width="550" height="550">
+          <div class="text">Slides from <a href="https://instagram.com/changingwomxn">
+          @changingwomxn</a> on instagram.</div>
+        </div>
+
+        <div class="slides-fade">
+          <img src="images/STEM3.jpg" alt="Breaks down bias in Science." width="550" 
+          height="550">
+          <div class="text">Slides from <a href="https://instagram.com/changingwomxn">
+          @changingwomxn</a> on instagram.</div>
+        </div>
+
+        <div class="slides-fade">
+          <img src="images/STEM4.jpg" alt="Breaks down bias in Technology." width="550" 
+          height="550">
+          <div class="text">Slides from <a href="https://instagram.com/changingwomxn">
+          @changingwomxn</a> on instagram.</div>
+        </div>
+
+        <div class="slides-fade">
+          <img src="images/STEM5.jpg" alt="Breaks down bias in Engineering" 
+          width="550" 
+          height="550">
+          <div class="text">Slides from <a href="https://instagram.com/changingwomxn">
+          @changingwomxn</a> on instagram.</div>
+        </div>
+
+        <div class="slides-fade">
+          <img src="images/STEM6.jpg" alt="Breaks down bias in Mathematics." 
+          width="550" 
+          height="550">
+          <div class="text">Slides from <a href="https://instagram.com/changingwomxn">
+          @changingwomxn</a> on instagram.</div>
+        </div>
+
+        <div class="slides-fade">
+          <img src="images/STEM7.jpg" alt="Mention of bias in medical field." 
+          width="550" 
+          height="550">
+          <div class="text">Slides from <a href="https://instagram.com/changingwomxn">
+          @changingwomxn</a> on instagram.</div>
+        </div>
+
+        <div class="slides-fade">
+          <img src="images/STEM8.jpg" alt="In conclusion, STEM is not 'colorblind.'" 
+          width="550" 
+          height="550">
+          <div class="text">Slides from <a href="https://instagram.com/changingwomxn">
+          @changingwomxn</a> on instagram.</div>
+        </div>
+
+        <!-- Next and previous buttons -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      </div>
 
       <h1>Photo Gallery</h1>
       <p>I'd love to share some photos with you all.</p>
@@ -64,55 +169,6 @@
       <div id="map"> </div>
       <p>Check out the markers to see my favorite restaurants! <br>
       There's 11 places... try to find them all!</p>
-
-      <!-- Slideshow container -->
-      <div class="slideshow-container">
-        <h1>Guinea Pig Gallery</h1>
-        <p>Press the arrows to open and view the Guinea Pig Gallery!</p>
-        <!-- images with number and caption text -->
-    
-        <div class="slides-fade">
-          <img src="images/GP2.jpg" alt="My guinea pig, Butter, smiling at the camera" width="550" 
-          height="550">
-          <div class="text">My guinea pig, Butter, smiling at the camera</div>
-        </div>
-
-        <div class="slides-fade">
-          <img src="images/GP1.jpg" alt="My guinea pig, Butter, sniffing the camera" width="550" 
-          height="550">
-          <div class="text">My guinea pig, Butter, sniffing the camera</div>
-        </div>
-
-        <div class="slides-fade">
-          <img src="images/GP3.jpg" alt="My guinea pig, Koko, posing for the camera" width="550" 
-          height="550">
-          <div class="text">My guinea pig, Koko, posing for the camera</div>
-        </div>
-
-        <div class="slides-fade">
-          <img src="images/GP4.jpg" alt="My guinea pig, Taffy, posing for the camera" width="550" 
-          height="550">
-          <div class="text">My guinea pig, Taffy, posing for the camera</div>
-        </div>
-
-        <div class="slides-fade">
-          <img src="images/GP5.jpg" alt="My guinea pig, Butter, running towards the camera" 
-          width="550" 
-          height="550">
-          <div class="text">My guinea pig, Butter, running towards the camera</div>
-        </div>
-
-        <div class="slides-fade">
-          <img src="images/GP6.jpg" alt="My guinea pig, Koko, running towards the camera" 
-          width="550" 
-          height="550">
-          <div class="text">My guinea pig, Koko, running towards the camera</div>
-        </div>
-
-        <!-- Next and previous buttons -->
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
-      </div>
 
       <div id="comment-num-container">
         <h1>Comments</h1>
