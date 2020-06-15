@@ -159,10 +159,10 @@ function drawChart() {
   const data = new google.visualization.DataTable();
   data.addColumn('string', 'Person');
   data.addColumn('number', 'Percentage');
-        data.addRows([
-          ['Men', 72],
-          ['Women', 28],
-        ]);
+  data.addRows([
+  ['Men', 72],
+  ['Women', 28],
+  ]);
 
   const options = {
     'title': 'The Distribution of Women & Men in the Science and Engineering Workforce',
