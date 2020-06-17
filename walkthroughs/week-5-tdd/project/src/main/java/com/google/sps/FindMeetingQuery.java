@@ -33,13 +33,15 @@ public final class FindMeetingQuery {
             return Arrays.asList();
         }
 
+    Collection<TimeRange> availibility = Arrays.asList();
     for (Event event: events){
         TimeRange before = TimeRange.fromStartEnd(TimeRange.START_OF_DAY, event.getWhen().start(), false);
         TimeRange after = TimeRange.fromStartEnd(event.getWhen().end(), TimeRange.END_OF_DAY, true);
-        return Arrays.asList(before, after);
+        availibility.add(before);
+        availibility.add(before);
 
     }
-    return Arrays.asList();
+    return availibility;
 
   }
 }
