@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 import java.lang.String;
 
 public final class FindMeetingQuery {
@@ -25,23 +27,30 @@ public final class FindMeetingQuery {
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
     Collection<String> attendees = request.getAttendees();
 
-        if (attendees.isEmpty()){
-            return Arrays.asList(TimeRange.WHOLE_DAY);
-        }
-
-        if (request.getDuration() >= (TimeRange.WHOLE_DAY.duration() + 1)){
-            return Arrays.asList();
-        }
-
-    Collection<TimeRange> availibility = Arrays.asList();
-    for (Event event: events){
-        TimeRange before = TimeRange.fromStartEnd(TimeRange.START_OF_DAY, event.getWhen().start(), false);
-        TimeRange after = TimeRange.fromStartEnd(event.getWhen().end(), TimeRange.END_OF_DAY, true);
-        availibility.add(before);
-        availibility.add(before);
-
+    if (attendees.isEmpty()){
+      return Arrays.asList(TimeRange.WHOLE_DAY);
     }
-    return availibility;
+
+    if (request.getDuration() >= (TimeRange.WHOLE_DAY.duration() + 1)){
+      return Arrays.asList();
+    }
+
+    Collection<Event> eventTotal = new ArrayList<>();
+    for (Event event: events){
+        eventTotal.add(new Event(event.getTitle(), TimeRange.fromStartDuration(event.getWhen().start(), event.getWhen().duration()),
+           attendees));
+    }
+
+    Collection<TimeRange> availability = new ArrayList<>();
+    int startTime = TimeRange.START_OF_DAY;
+    int endTime = TimeRange.END_OF_DAY;
+    for (Event event: eventTotal){
+      TimeRange before = TimeRange.fromStartEnd(startTime, event.getWhen().start(), false);
+      availability.add(before);
+      startTime = event.getWhen().end(); 
+    }
+    availability.add(TimeRange.fromStartEnd(startTime, TimeRange.END_OF_DAY, true));
+    return availability;
 
   }
 }
