@@ -18,30 +18,62 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 import java.lang.String;
 
 public final class FindMeetingQuery {
 
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
-    Collection<String> attendees = request.getAttendees();
+    Collection<String> requestAttendees = request.getAttendees();
 
-        if (attendees.isEmpty()){
-            return Arrays.asList(TimeRange.WHOLE_DAY);
-        }
-
-        if (request.getDuration() >= (TimeRange.WHOLE_DAY.duration() + 1)){
-            return Arrays.asList();
-        }
-
-    Collection<TimeRange> availibility = Arrays.asList();
-    for (Event event: events){
-        TimeRange before = TimeRange.fromStartEnd(TimeRange.START_OF_DAY, event.getWhen().start(), false);
-        TimeRange after = TimeRange.fromStartEnd(event.getWhen().end(), TimeRange.END_OF_DAY, true);
-        availibility.add(before);
-        availibility.add(before);
-
+    if (requestAttendees.isEmpty()){
+      return Arrays.asList(TimeRange.WHOLE_DAY);
     }
-    return availibility;
+
+    if (request.getDuration() >= (TimeRange.WHOLE_DAY.duration() + 1)){
+      return Arrays.asList();
+    }
+
+    Collection<Event> eventTotal = new ArrayList<>();
+    int eventEndTime = TimeRange.START_OF_DAY;
+    Collection<TimeRange> availability = new ArrayList<>();
+    for (Event event: events) {
+      if (requestAttendees.size() == 1) {
+       for (String attendee : requestAttendees) {
+         for (String eventAttendee : event.getAttendees()) {
+           if (!attendee.equals(eventAttendee)) {
+             availability.add(TimeRange.fromStartEnd(eventEndTime, TimeRange.END_OF_DAY, true));
+             return availability; 
+            }
+          }
+        }
+      }
+      if (eventEndTime >= event.getWhen().start() && eventEndTime >= event.getWhen().end()) {continue;}
+      if (eventEndTime > event.getWhen().start()) {
+        eventTotal.add(new Event(event.getTitle(), TimeRange.fromStartEnd(eventEndTime, 
+        event.getWhen().end(), false), requestAttendees));
+      } 
+      else {
+        eventTotal.add(new Event(event.getTitle(), TimeRange.fromStartDuration(event.getWhen().start(), 
+        event.getWhen().duration()), requestAttendees));
+      }
+      eventEndTime = event.getWhen().end();
+    }
+
+    eventEndTime = TimeRange.START_OF_DAY;
+    for (Event event: eventTotal) {
+      TimeRange before = TimeRange.fromStartEnd(eventEndTime, event.getWhen().start(), false);
+      if (before.duration() >= request.getDuration()) {
+        availability.add(before);
+      }
+      eventEndTime = event.getWhen().end(); 
+    }
+    TimeRange after = TimeRange.fromStartEnd(eventEndTime, TimeRange.END_OF_DAY, true);
+    if (after.start() != after.end()) {
+      availability.add(TimeRange.fromStartEnd(eventEndTime, TimeRange.END_OF_DAY, true));
+    }
+    return availability;
 
   }
 }
