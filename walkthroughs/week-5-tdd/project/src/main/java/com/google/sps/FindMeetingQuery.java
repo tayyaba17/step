@@ -25,9 +25,9 @@ import java.lang.String;
 public final class FindMeetingQuery {
 
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
-    Collection<String> attendees = request.getAttendees();
+    Collection<String> requestAttendees = request.getAttendees();
 
-    if (attendees.isEmpty()){
+    if (requestAttendees.isEmpty()){
       return Arrays.asList(TimeRange.WHOLE_DAY);
     }
 
@@ -38,39 +38,41 @@ public final class FindMeetingQuery {
     Collection<Event> eventTotal = new ArrayList<>();
     int eventEndTime = TimeRange.START_OF_DAY;
     Collection<TimeRange> availability = new ArrayList<>();
-    for (Event event: events){
-      if (attendees.size() == 1){
-       for (String attendee : attendees){
-         for (String eventAttendee : event.getAttendees()){
-           if (!attendee.equals(eventAttendee)){
-             Collection<TimeRange> availability1 = new ArrayList<>();
+    for (Event event: events) {
+      if (requestAttendees.size() == 1) {
+       for (String attendee : requestAttendees) {
+         for (String eventAttendee : event.getAttendees()) {
+           if (!attendee.equals(eventAttendee)) {
              availability.add(TimeRange.fromStartEnd(eventEndTime, TimeRange.END_OF_DAY, true));
              return availability; 
             }
           }
         }
       }
-      if (eventEndTime >= event.getWhen().start() && eventEndTime >= event.getWhen().end()){continue;}
-      if (eventEndTime > event.getWhen().start()){
+      if (eventEndTime >= event.getWhen().start() && eventEndTime >= event.getWhen().end()) {continue;}
+      if (eventEndTime > event.getWhen().start()) {
         eventTotal.add(new Event(event.getTitle(), TimeRange.fromStartEnd(eventEndTime, 
-        event.getWhen().end(), false), attendees));
-      } else {
+        event.getWhen().end(), false), requestAttendees));
+      } 
+      else {
         eventTotal.add(new Event(event.getTitle(), TimeRange.fromStartDuration(event.getWhen().start(), 
-        event.getWhen().duration()), attendees));}
+        event.getWhen().duration()), requestAttendees));
+      }
       eventEndTime = event.getWhen().end();
     }
 
     eventEndTime = TimeRange.START_OF_DAY;
-    for (Event event: eventTotal){
+    for (Event event: eventTotal) {
       TimeRange before = TimeRange.fromStartEnd(eventEndTime, event.getWhen().start(), false);
-      if (before.duration() >= request.getDuration()){
+      if (before.duration() >= request.getDuration()) {
         availability.add(before);
       }
       eventEndTime = event.getWhen().end(); 
     }
     TimeRange after = TimeRange.fromStartEnd(eventEndTime, TimeRange.END_OF_DAY, true);
-    if (after.start() != after.end()){
-      availability.add(TimeRange.fromStartEnd(eventEndTime, TimeRange.END_OF_DAY, true));}
+    if (after.start() != after.end()) {
+      availability.add(TimeRange.fromStartEnd(eventEndTime, TimeRange.END_OF_DAY, true));
+    }
     return availability;
 
   }
