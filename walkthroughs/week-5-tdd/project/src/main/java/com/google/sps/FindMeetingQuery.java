@@ -36,20 +36,41 @@ public final class FindMeetingQuery {
     }
 
     Collection<Event> eventTotal = new ArrayList<>();
+    int eventEndTime = TimeRange.START_OF_DAY;
+    Collection<TimeRange> availability = new ArrayList<>();
     for (Event event: events){
-        eventTotal.add(new Event(event.getTitle(), TimeRange.fromStartDuration(event.getWhen().start(), event.getWhen().duration()),
-           attendees));
+      if (attendees.size() == 1){
+       for (String attendee : attendees){
+         for (String eventAttendee : event.getAttendees()){
+           if (!attendee.equals(eventAttendee)){
+             Collection<TimeRange> availability1 = new ArrayList<>();
+             availability.add(TimeRange.fromStartEnd(eventEndTime, TimeRange.END_OF_DAY, true));
+             return availability; 
+            }
+          }
+        }
+      }
+      if (eventEndTime >= event.getWhen().start() && eventEndTime >= event.getWhen().end()){continue;}
+      if (eventEndTime > event.getWhen().start()){
+        eventTotal.add(new Event(event.getTitle(), TimeRange.fromStartEnd(eventEndTime, 
+        event.getWhen().end(), false), attendees));
+      } else {
+        eventTotal.add(new Event(event.getTitle(), TimeRange.fromStartDuration(event.getWhen().start(), 
+        event.getWhen().duration()), attendees));}
+      eventEndTime = event.getWhen().end();
     }
 
-    Collection<TimeRange> availability = new ArrayList<>();
-    int startTime = TimeRange.START_OF_DAY;
-    int endTime = TimeRange.END_OF_DAY;
+    eventEndTime = TimeRange.START_OF_DAY;
     for (Event event: eventTotal){
-      TimeRange before = TimeRange.fromStartEnd(startTime, event.getWhen().start(), false);
-      availability.add(before);
-      startTime = event.getWhen().end(); 
+      TimeRange before = TimeRange.fromStartEnd(eventEndTime, event.getWhen().start(), false);
+      if (before.duration() >= request.getDuration()){
+        availability.add(before);
+      }
+      eventEndTime = event.getWhen().end(); 
     }
-    availability.add(TimeRange.fromStartEnd(startTime, TimeRange.END_OF_DAY, true));
+    TimeRange after = TimeRange.fromStartEnd(eventEndTime, TimeRange.END_OF_DAY, true);
+    if (after.start() != after.end()){
+      availability.add(TimeRange.fromStartEnd(eventEndTime, TimeRange.END_OF_DAY, true));}
     return availability;
 
   }
