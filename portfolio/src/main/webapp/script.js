@@ -56,31 +56,26 @@ function deleteComments() {
   });
 }
 
-var slideIndex = 0;
+var slideIndex = [1,1];
+var slideId = ["slides-fade1", "slides-fade2"]
+showSlides(1, 0);
+showSlides(1, 1);
 
-// Next/previous controls
-function plusSlides(n) {
-  showSlides(slideIndex += n);
+function plusSlides(n, no) {
+  showSlides(slideIndex[no] += n, no);
 }
 
-// Thumbnail image controls
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-// Add it to the page.
-const slideContainer = document.getElementById('slides-fade');
-
-function showSlides(n) {
+function showSlides(n, no) {
   var i;
-  var slides = document.getElementsByClassName('slides-fade');
-  if (n > slides.length) {slideIndex = 0}
-  if (n < 0) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = 'none';
+  var x = document.getElementsByClassName(slideId[no]);
+  if (n > x.length) {slideIndex[no] = 0}    
+  if (n < 0) {slideIndex[no] = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";  
   }
-  slides[slideIndex-1].style.display = 'block';
+  x[slideIndex[no]-1].style.display = "block";
 }
+
 
 function createMap() {
   const map = new google.maps.Map(
@@ -142,7 +137,7 @@ function createMap() {
   });
 
  const restaurant10 = new google.maps.Marker({
-      position: {lat: 43.645964, lng: -88.033743},
+      position: {lat: 42.040975, lng: -88.033668},
       map: map,
       title: 'If you want an cookie ice-cream sandwich.'
   });
@@ -160,9 +155,9 @@ function drawChart() {
   data.addColumn('string', 'Person');
   data.addColumn('number', 'Percentage');
   data.addRows([
-  ['Men', 72],
-  ['Women', 28],
-  ]);
+    ['Men', 72],
+    ['Women', 28],
+    ]);
 
   const options = {
     'title': 'The Distribution of Women & Men in the Science and Engineering Workforce',
