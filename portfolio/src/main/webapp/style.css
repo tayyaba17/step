@@ -65,7 +65,16 @@ body {
 }
 
 /* Hide the images by default */
-.slides-fade {
+.slides-fade1 {
+  display: none;
+  width: 550px;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+
+/* Hide the images by default */
+.slides-fade2 {
   display: none;
   width: 550px;
   margin-left: auto;
